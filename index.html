@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATNC – Association des Transporteurs Nourriciers du Congo</title>
+<meta name="description" content="L'ATNC défend les transporteurs de denrées périssables, sécurise le transport alimentaire sur l'axe Kasangulu–Yema et reconnaît ses membres par le timbre professionnel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+:root{
+  --asphalt:#1E2630; --asphalt-2:#2B3440; --green:#1F6B45; --green-dark:#154A30;
+  --line:#F2B705; --paper:#F5F7F4; --ink:#1B2129; --muted:#5B6672;
+  --bs-body-font-family:'Public Sans',system-ui,sans-serif;
+  --bs-body-color:var(--ink); --bs-body-bg:var(--paper);
+  --bs-link-color:var(--green); --bs-link-hover-color:var(--green-dark);
+}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+h1,h2,h3,h4,.brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.2px}
+h2{font-size:clamp(2rem,4vw,2.9rem);line-height:1.05}
+p{max-width:68ch}
+:focus-visible{outline:3px solid var(--line);outline-offset:2px}
+
+/* Navbar */
+.navbar{background:var(--asphalt);border-bottom:4px solid var(--line)}
+.brand{font-size:1.7rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:.6rem}
+.brand-mark{background:var(--line);color:var(--asphalt);padding:.05rem .5rem;border-radius:4px;font-weight:800}
+.navbar .nav-link{color:#D6DCE3;font-weight:500}
+.navbar .nav-link:hover,.navbar .nav-link.active{color:var(--line)}
+.btn-line{background:var(--line);color:var(--asphalt);font-weight:600;border:0;padding:.7rem 1.4rem;border-radius:6px}
+.btn-line:hover{background:#ffc928;color:var(--asphalt)}
+.btn-ghost{border:2px solid #fff;color:#fff;font-weight:600;padding:.62rem 1.4rem;border-radius:6px}
+.btn-ghost:hover{background:#fff;color:var(--asphalt)}
+.btn-green{background:var(--green);color:#fff;font-weight:600;padding:.7rem 1.4rem;border-radius:6px;border:0}
+.btn-green:hover{background:var(--green-dark);color:#fff}
+
+/* Hero : la route */
+.hero{background:var(--asphalt);color:#fff;position:relative;overflow:hidden;padding:5.5rem 0 0}
+.hero h1{font-size:clamp(2.8rem,7.5vw,5.6rem);line-height:.95;font-weight:800;max-width:15ch}
+.hero .lead{color:#C9D1DA;font-size:1.2rem;max-width:52ch}
+.road{margin-top:4.5rem;height:70px;position:relative;background:#161C24;border-top:3px solid #3a4553}
+.road::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;transform:translateY(-50%);
+  background:repeating-linear-gradient(90deg,var(--line) 0 46px,transparent 46px 92px);
+  background-size:92px 6px;animation:drive 1.8s linear infinite}
+@keyframes drive{to{background-position:-92px 0}}
+.truck{position:absolute;top:50%;left:12%;transform:translateY(-100%);font-size:2.2rem;color:var(--line)}
+@media (prefers-reduced-motion:reduce){.road::before{animation:none}}
+
+/* Sections */
+section{padding:5rem 0}
+.sec-dark{background:var(--asphalt);color:#fff}
+.sec-dark p{color:#C9D1DA}
+.mission{border-left:5px solid var(--green);padding:.4rem 0 .4rem 1.4rem;height:100%}
+.mission i{font-size:2rem;color:var(--green)}
+.mission h3{font-size:1.7rem;margin:.6rem 0}
+.mission p{color:var(--muted);margin:0}
+.more{border-left-color:var(--line)}
+.more i{color:#b88900}
+
+/* Axe */
+.route{display:flex;align-items:center;gap:0;margin:2.5rem 0 1rem}
+.stop{width:22px;height:22px;border-radius:50%;background:var(--line);border:5px solid var(--asphalt);box-shadow:0 0 0 3px var(--line);flex:none}
+.leg{flex:1;height:0;border-top:6px dashed var(--line)}
+.stop-names{display:flex;justify-content:space-between;font-family:'Barlow Condensed';font-size:1.5rem;font-weight:700}
+
+/* Timbre */
+.card-pro{background:#fff;border-radius:14px;border:1px solid #DDE3E0;box-shadow:0 14px 40px rgba(30,38,48,.14);overflow:hidden;max-width:430px;margin-inline:auto;transform:rotate(-2deg)}
+.card-pro .top{background:var(--green);color:#fff;padding:.9rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
+.card-pro .top b{font-family:'Barlow Condensed';font-size:1.4rem}
+.card-pro .body{padding:1.3rem;position:relative}
+.field{border-bottom:1px dashed #BFC8C3;padding:.45rem 0;color:var(--muted);font-size:.9rem}
+.field span{display:inline-block;width:6.5rem}
+.stamp{position:absolute;right:1rem;bottom:.8rem;width:110px;opacity:.9;transform:rotate(12deg)}
+
+/* Formulaire */
+.form-control,.form-select{border-radius:6px;padding:.7rem .9rem;border-color:#C5CDD3}
+.form-control:focus,.form-select:focus{border-color:var(--green);box-shadow:0 0 0 .2rem rgba(31,107,69,.2)}
+.contact-line{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:1rem}
+.contact-line i{color:var(--line);font-size:1.3rem}
+
+/* Animations */
+.hero h1,.hero .lead,.hero .d-flex{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero .lead{animation-delay:.15s}.hero .d-flex{animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.mission{transition:transform .3s,border-color .3s}.mission:hover{transform:translateX(6px);border-left-color:var(--line)}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero h1,.hero .lead,.hero .d-flex{animation:none}}
+
+/* Galerie */
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.5rem 0 2rem}
+.filters button{border:2px solid var(--asphalt);background:transparent;color:var(--asphalt);font-weight:600;padding:.4rem 1.1rem;border-radius:50px;transition:.25s}
+.filters button:hover,.filters button.active{background:var(--asphalt);color:var(--line)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.g-item{position:relative;overflow:hidden;border-radius:10px;cursor:pointer;aspect-ratio:4/3;border:0;padding:0;background:#ddd;transition:opacity .4s,transform .4s}
+.g-item.hide{display:none}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.g-item:hover img,.g-item:focus-visible img{transform:scale(1.1)}
+.g-item span{position:absolute;inset:auto 0 0 0;padding:2.5rem 1rem .8rem;color:#fff;text-align:left;font-weight:600;background:linear-gradient(transparent,rgba(20,26,33,.85));transform:translateY(100%);transition:transform .35s}
+.g-item:hover span,.g-item:focus-visible span{transform:none}
+#lightbox .modal-content{background:transparent;border:0}
+#lightbox img{width:100%;border-radius:10px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border-radius:50%;border:0;background:var(--line);color:var(--asphalt);font-size:1.3rem}
+.lb-prev{left:-18px}.lb-next{right:-18px}
+
+/* Footer */
+footer{background:#141A21;color:#98A3AF;padding:4rem 0 0;font-size:.95rem}
+footer h3{color:#fff;font-size:1.4rem;margin-bottom:1rem}
+footer a{color:#C9D1DA;text-decoration:none}footer a:hover{color:var(--line)}
+footer ul{list-style:none;padding:0;margin:0}footer li{margin-bottom:.5rem}
+.social{display:flex;gap:.6rem;margin-top:1.2rem}
+.social a{width:42px;height:42px;border-radius:50%;background:var(--asphalt-2);display:grid;place-items:center;font-size:1.15rem;transition:.25s}
+.social a:hover{background:var(--line);color:var(--asphalt);transform:translateY(-4px)}
+.news .form-control{background:var(--asphalt-2);border-color:var(--asphalt-2);color:#fff}
+.news .form-control::placeholder{color:#8794A3}
+.copy{border-top:1px solid #26303B;margin-top:3rem;padding:1.3rem 0}
+
+/* Hero image + dégradé */
+.hero{padding:0;min-height:640px;display:flex;align-items:center;
+  background:linear-gradient(100deg,rgba(18,28,42,.94) 0%,rgba(18,28,42,.82) 45%,rgba(18,28,42,.45) 100%),url("https://images.unsplash.com/photo-1694113372786-2553caec0c76?auto=format&fit=crop&w=1920&q=70") bottom/cover no-repeat}
+.hero>.container{padding-block:5rem}
+.hero h1{font-size:clamp(2.8rem,6.5vw,5.2rem);max-width:none;margin-top:1.4rem}
+.hero h1 em{font-style:normal;color:var(--line)}
+.pill{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1rem;border:1px solid rgba(255,255,255,.3);border-radius:50px;background:rgba(255,255,255,.08);color:var(--line);font-weight:600;font-size:.85rem;backdrop-filter:blur(4px)}
+.pill .dot{width:9px;height:9px;border-radius:50%;background:#3DDC97}
+.hero-feats{list-style:none;padding:0;margin:2.2rem 0 0;display:flex;flex-wrap:wrap;gap:.8rem 1.8rem;color:#E5EAF0;font-size:.95rem}
+.hero-feats i{color:var(--line);margin-right:.5rem}
+.hero-card{background:#fff;color:var(--ink);border-radius:24px;padding:2rem;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:rise .9s .35s cubic-bezier(.2,.7,.2,1) both}
+.hero-card small{color:#D9730D;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem}
+.hero-card h2{font-size:2rem;margin:.5rem 0 .8rem;color:var(--asphalt)}
+.hero-card p{color:var(--muted);font-size:.95rem}
+.btn-dark-card{display:flex;justify-content:space-between;align-items:center;background:var(--asphalt);color:#fff;font-weight:600;padding:1rem 1.3rem;border-radius:14px;text-decoration:none;transition:.25s}
+.btn-dark-card i{color:var(--line)}.btn-dark-card:hover{background:var(--green);color:#fff;transform:translateY(-2px)}
+.hero-card .note{text-align:center;color:#8794A3;font-size:.82rem;margin-top:1rem}
+.hero-card .note i{color:var(--green)}
+@media (prefers-reduced-motion:reduce){.hero-card{animation:none}}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+  <div class="container">
+    <a class="brand" href="#accueil"><span class="brand-mark">ATNC</span><span class="d-none d-sm-inline">Transporteurs Nourriciers</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#missions">Nos missions</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="#axe">L'axe Kasangulu–Yema</a></li> -->
+        <li class="nav-item"><a class="nav-link" href="#timbre">Le timbre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galerie">Galerie</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-2"><a class="btn btn-line" href="#contact">Adhérer</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="accueil">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span class="pill"><i class="dot"></i>Au service des transporteurs nourriciers</span>
+        <h1>Ceux qui roulent.<br><em>Pour nourrir le pays.</em></h1>
+        <p class="lead">Une association qui défend, encadre et reconnaît les transporteurs de denrées périssables sur l'axe Kasangulu–Yema.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="#missions" class="btn btn-line">Découvrir nos missions <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#galerie" class="btn btn-ghost">Voir la galerie</a>
+        </div>
+        <ul class="hero-feats">
+          <li><i class="bi bi-shield-check"></i>Sécurité sur l'axe</li>
+          <li><i class="bi bi-people-fill"></i>Entraide entre membres</li>
+          <li><i class="bi bi-patch-check-fill"></i>Timbre professionnel</li>
+        </ul>
+      </div>
+      <div class="col-lg-5">
+        <aside class="hero-card">
+          <small>Rejoindre l'ATNC</small>
+          <h2>Une association à vos côtés sur la route.</h2>
+          <p>Transporteur de denrées périssables ? Envoyez votre demande d'adhésion et obtenez la reconnaissance du timbre.</p>
+          <a href="#contact" class="btn-dark-card">Devenir membre <i class="bi bi-box-arrow-up-right"></i></a>
+          <div class="note"><i class="bi bi-shield-fill-check"></i> Demande soumise à validation par notre bureau</div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="missions">
+  <div class="container">
+    <h2 class="mb-2">Ce que nous faisons pour nos membres</h2>
+    <p class="text-secondary mb-5">Chaque jour, des tonnes de denrées fraîches doivent arriver à temps sur les marchés. Notre rôle est de garder cette chaîne solide.</p>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="mission"><i class="bi bi-shield-check"></i><h3>Défendre nos intérêts</h3><p>Nous représentons les transporteurs de denrées périssables et de biens nourriciers auprès des autorités et des partenaires.</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="mission"><i class="bi bi-signpost-split"></i><h3>Sécuriser la route</h3><p>Nous veillons à la sécurité du transport alimentaire et encadrons l'activité sur l'axe Kasangulu–Yema.</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="mission"><i class="bi bi-patch-check"></i><h3>Reconnaître le métier</h3><p>Le timbre ATNC donne aux membres une reconnaissance professionnelle et facilite leur circulation.</p></div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="mission more"><i class="bi bi-plus-circle"></i><h3>Et bien d'autres actions</h3><p>Formation, entraide entre membres, dialogue avec les institutions : l'association s'adapte aux besoins du terrain.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="axe" class="sec-dark">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <h2>Un axe, un cadre clair.</h2>
+        <p class="mt-3">Entre Kasangulu et Yema, l'ATNC encadre l'activité des transporteurs pour que les denrées arrivent fraîches et que les chauffeurs travaillent dans de bonnes conditions.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="route" role="img" aria-label="Itinéraire de Kasangulu à Yema"><span class="stop"></span><span class="leg"></span><span class="stop"></span></div>
+        <div class="stop-names"><span>Kasangulu</span><span>Yema</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="timbre">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-lg-2">
+        <h2>Le timbre : la preuve de votre métier.</h2>
+        <p class="mt-3">Le timbre ATNC identifie le transporteur comme membre reconnu de l'association. Il facilite la circulation sur l'axe et montre aux autorités et aux clients que l'activité est encadrée.</p>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Reconnaissance professionnelle officielle</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Circulation facilitée pour les membres</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Appui de l'association en cas de difficulté</li>
+        </ul>
+        <a href="#contact" class="btn btn-green">Demander mon timbre</a>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <div class="card-pro" aria-hidden="true">
+          <div class="top"><b>ATNC</b><span>Carte de membre</span></div>
+          <div class="body">
+            <div class="field"><span>Nom</span>________________</div>
+            <div class="field"><span>Véhicule</span>________________</div>
+            <div class="field"><span>Axe</span>Kasangulu – Yema</div>
+            <div class="field"><span>Valide</span>____ / ____</div>
+            <svg class="stamp" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="#1F6B45" stroke-width="4"/><circle cx="60" cy="60" r="42" fill="none" stroke="#1F6B45" stroke-width="1.5"/><text x="60" y="56" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="26" fill="#1F6B45">ATNC</text><text x="60" y="76" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#1F6B45">TIMBRE</text></svg>
+            <div style="height:70px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galerie">
+  <div class="container">
+    <h2>La vie sur la route et sur les marchés</h2>
+    <p class="text-secondary mt-3">Cliquez sur une image pour l'agrandir. Utilisez les filtres pour trier.</p>
+    <div class="filters" role="group" aria-label="Filtrer la galerie">
+      <button class="active" data-f="all">Tous</button>
+      <button data-f="route">Route</button>
+      <button data-f="marche">Marchés</button>
+          </div>
+    <!-- Photos : Unsplash (licence libre). Remplacez-les par les vraies photos de l'ATNC quand vous les aurez -->
+    <div class="gallery">
+      <button class="g-item" data-c="route"><img src="https://images.unsplash.com/photo-1694113372786-2553caec0c76?auto=format&fit=crop&w=800&q=70" data-full="https://images.unsplash.com/photo-1694113372786-2553caec0c76?auto=format&fit=crop&w=1600&q=70" alt="Camion sur la route entre les champs" loading="lazy"><span>Camion sur la route entre les champs</span></button>
+      <button class="g-item" data-c="marche"><img src="https://images.unsplash.com/photo-1759344114577-b6c32e4d68c8?auto=format&fit=crop&w=800&q=70" data-full="https://images.unsplash.com/photo-1759344114577-b6c32e4d68c8?auto=format&fit=crop&w=1600&q=70" alt="Étal de fruits et légumes au marché" loading="lazy"><span>Étal de fruits et légumes au marché</span></button>
+      <button class="g-item" data-c="route"><img src="https://images.unsplash.com/photo-1695222833131-54ee679ae8e5?auto=format&fit=crop&w=800&q=70" data-full="https://images.unsplash.com/photo-1695222833131-54ee679ae8e5?auto=format&fit=crop&w=1600&q=70" alt="Camion sur une route de campagne" loading="lazy"><span>Camion sur une route de campagne</span></button>
+      <button class="g-item" data-c="marche"><img src="https://images.unsplash.com/photo-1559297434-fae8a1916a79?auto=format&fit=crop&w=800&q=70" data-full="https://images.unsplash.com/photo-1559297434-fae8a1916a79?auto=format&fit=crop&w=1600&q=70" alt="Chargement et logistique" loading="lazy"><span>Chargement et logistique</span></button>
+      <button class="g-item" data-c="route"><img src="https://images.unsplash.com/photo-1485575301924-6891ef935dcd?auto=format&fit=crop&w=800&q=70" data-full="https://images.unsplash.com/photo-1485575301924-6891ef935dcd?auto=format&fit=crop&w=1600&q=70" alt="Camion en route" loading="lazy"><span>Camion en route</span></button>
+      <button class="g-item" data-c="route"><img src="https://images.unsplash.com/photo-1629881635342-c1272d45d0fa?auto=format&fit=crop&w=800&q=70" data-full="https://images.unsplash.com/photo-1629881635342-c1272d45d0fa?auto=format&fit=crop&w=1600&q=70" alt="Départ avant l'aube" loading="lazy"><span>Départ avant l'aube</span></button>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="lightbox" tabindex="-1" aria-label="Image agrandie" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content position-relative">
+      <button class="lb-nav lb-prev" aria-label="Image précédente"><i class="bi bi-chevron-left"></i></button>
+      <button class="lb-nav lb-next" aria-label="Image suivante"><i class="bi bi-chevron-right"></i></button>
+      <img id="lbImg" src="" alt="">
+      <p id="lbCap" class="text-white text-center mt-2 mb-0"></p>
+    </div>
+  </div>
+</div>
+
+<section id="contact" style="background:#E8EEEA">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h2>Rejoignez l'association.</h2>
+        <p class="mt-3 mb-4">Remplissez le formulaire. Un responsable de l'ATNC vous rappellera pour la suite de votre adhésion.</p>
+        <div class="contact-line"><i class="bi bi-geo-alt-fill"></i><div>Adresse du siège<br><small class="text-secondary">À compléter</small></div></div>
+        <div class="contact-line"><i class="bi bi-telephone-fill"></i><div>+243 ... ... ...<br><small class="text-secondary">À compléter</small></div></div>
+        <div class="contact-line"><i class="bi bi-envelope-fill"></i><div>contact@atnc.cd<br><small class="text-secondary">À compléter</small></div></div>
+      </div>
+      <div class="col-lg-7">
+        <!-- PHP : remplacer action="#" par le script de traitement (ex. traitement.php) et method="post" -->
+        <form id="formAdhesion" action="#" method="post" class="bg-white p-4 p-md-5 rounded-3 shadow-sm" novalidate>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nom" class="form-label">Nom complet</label>
+              <input type="text" class="form-control" id="nom" name="nom" required>
+              <div class="invalid-feedback">Indiquez votre nom complet.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="tel" class="form-label">Téléphone</label>
+              <input type="tel" class="form-control" id="tel" name="telephone" required pattern="^[+0-9 ]{9,16}$">
+              <div class="invalid-feedback">Entrez un numéro valide, par exemple +243 8x xxx xxxx.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="type" class="form-label">Marchandise transportée</label>
+              <select class="form-select" id="type" name="marchandise" required>
+                <option value="" selected disabled>Choisir...</option>
+                <option>Légumes et fruits</option>
+                <option>Poisson et viande</option>
+                <option>Manioc et tubercules</option>
+                <option>Autres denrées</option>
+              </select>
+              <div class="invalid-feedback">Choisissez un type de marchandise.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="plaque" class="form-label">Plaque du véhicule</label>
+              <input type="text" class="form-control" id="plaque" name="plaque">
+            </div>
+            <div class="col-12">
+              <label for="msg" class="form-label">Message</label>
+              <textarea class="form-control" id="msg" name="message" rows="4"></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-green">Envoyer ma demande</button>
+            </div>
+            <div class="col-12"><div id="retour" class="alert alert-success d-none mb-0" role="status">Votre demande est bien enregistrée. L'ATNC vous contactera bientôt.</div></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <a class="brand mb-3" href="#accueil"><span class="brand-mark">ATNC</span>Transporteurs Nourriciers</a>
+        <p>Nous défendons et encadrons les transporteurs de denrées périssables pour que les produits frais arrivent à bon port.</p>
+        <div class="social">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3>Navigation</h3>
+        <ul><li><a href="#missions">Nos missions</a></li><li></li><li><a href="#timbre">Le timbre</a></li><li><a href="#galerie">Galerie</a></li><li><a href="#contact">Adhérer</a></li></ul>
+      </div>
+      <div class="col-6 col-lg-3">
+        <h3>Contact</h3>
+        <ul><li><i class="bi bi-geo-alt me-2"></i>Adresse à compléter</li><li><i class="bi bi-telephone me-2"></i>+243 ... ... ...</li><li><i class="bi bi-envelope me-2"></i>contact@atnc.cd</li></ul>
+      </div>
+      <div class="col-lg-3 news">
+        <h3>Newsletter</h3>
+        <p>Recevez les actualités et avis de l'association.</p>
+        <!-- PHP : action vers le script d'inscription -->
+        <form id="formNews" action="#" method="post" novalidate>
+          <div class="input-group">
+            <input type="email" class="form-control" id="newsMail" name="email" placeholder="Votre email" aria-label="Votre email" required>
+            <button class="btn btn-line" type="submit">S'abonner</button>
+          </div>
+          <div id="newsMsg" class="small mt-2" role="status"></div>
+        </form>
+      </div>
+    </div>
+    <div class="copy d-flex flex-column flex-md-row justify-content-between gap-2">
+      <span>&copy; <span id="annee"></span> ATNC &ndash; Association des Transporteurs Nourriciers du Congo. Tous droits réservés.</span>
+      <span><a href="#">Mentions légales</a> &nbsp;|&nbsp; <a href="#">Confidentialité</a> &nbsp;|&nbsp; <a href="#accueil">Haut de page <i class="bi bi-arrow-up"></i></a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('annee').textContent = new Date().getFullYear();
+
+// Ferme le menu mobile après un clic
+document.querySelectorAll('#menu .nav-link, #menu .btn').forEach(function(l){
+  l.addEventListener('click', function(){
+    var m = document.getElementById('menu');
+    if (m.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(m).hide();
+  });
+});
+
+// Validation du formulaire (le traitement serveur en PHP viendra plus tard)
+var form = document.getElementById('formAdhesion');
+form.addEventListener('submit', function(e){
+  e.preventDefault(); // à retirer quand le PHP sera branché
+  form.classList.add('was-validated');
+  if (form.checkValidity()) {
+    document.getElementById('retour').classList.remove('d-none');
+    form.reset();
+    form.classList.remove('was-validated');
+  }
+});
+
+// Apparition au défilement
+var cibles=document.querySelectorAll('section h2, section > .container > p, .mission, .card-pro, .route, .gallery .g-item, #formAdhesion, .contact-line');
+cibles.forEach(function(el,i){el.classList.add('reveal');el.style.transitionDelay=(i%4)*90+'ms';});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+cibles.forEach(function(el){io.observe(el);});
+
+// Galerie : filtres + lightbox
+var items=[].slice.call(document.querySelectorAll('.g-item'));
+document.querySelectorAll('.filters button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.filters button').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    items.forEach(function(it){it.classList.toggle('hide',b.dataset.f!=='all'&&it.dataset.c!==b.dataset.f);});
+  });
+});
+var lb=new bootstrap.Modal(document.getElementById('lightbox')),cur=0;
+function visibles(){return items.filter(function(i){return !i.classList.contains('hide');});}
+function show(n){var v=visibles();cur=(n+v.length)%v.length;var im=v[cur].querySelector('img');
+  document.getElementById('lbImg').src=im.dataset.full||im.src;document.getElementById('lbImg').alt=im.alt;document.getElementById('lbCap').textContent=im.alt;}
+items.forEach(function(it){it.addEventListener('click',function(){show(visibles().indexOf(it));lb.show();});});
+document.querySelector('.lb-prev').addEventListener('click',function(){show(cur-1);});
+document.querySelector('.lb-next').addEventListener('click',function(){show(cur+1);});
+document.addEventListener('keydown',function(e){if(!document.getElementById('lightbox').classList.contains('show'))return;
+  if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1);});
+
+// Newsletter (traitement PHP à venir)
+document.getElementById('formNews').addEventListener('submit',function(e){
+  e.preventDefault(); // à retirer quand le PHP sera branché
+  var m=document.getElementById('newsMail'),r=document.getElementById('newsMsg');
+  if(m.checkValidity()&&m.value){r.style.color='#7ED9A6';r.textContent='Merci, vous êtes inscrit.';this.reset();}
+  else{r.style.color='#FF9C8A';r.textContent='Entrez une adresse email valide.';}
+});
+</script>
+</body>
+</html>
